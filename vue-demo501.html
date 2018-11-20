@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内置指令 IF ELSE</title>
+</head>
+<body>
+
+<div id='app'>
+    <p v-if="status===1">status=1时显示</p>
+    <p v-else-if="status===2">status=2时显示</p>
+    <p v-else>其他情况显示</p>
+</div>
+
+<!--一次性判断多个元素 用“template”标签-->
+<div id="app2">
+    <template v-if="type==='name'">
+        <label>用户名</label>
+        <input placeholder="请输入用户名" key = "name-input">
+    </template>
+    <template v-else>
+        <label>邮箱</label>
+        <input placeholder="请输入邮箱">
+    </template>
+    <button @click="handleToggleClick">切换输入类型</button>
+</div>
+
+<!--v-show-->
+<div id="app3">
+    <p v-show="status===1"></p>
+</div>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            status: 1
+        }
+    })
+
+    //$el可以访问该元素
+    console.log(app.$el);
+
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            type: 'name'
+        },
+        methods: {
+            handleToggleClick: function () {
+                this.type = this.type === 'name' ? 'mail' : 'name';
+            }
+        }
+    })
+
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            status: '1'
+        }
+    })
+
+
+</script>
+
+
+</body>
+</html>

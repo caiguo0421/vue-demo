@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="book in books">{{book.name}}</li>
+    </ul>
+    <!--支持索引-->
+    <ul>
+        <li v-for="(book,index) in books">{{index}} - {{book.name}}</li>
+    </ul>
+</div>
+
+<!--可遍历对象-->
+<div id="app2">
+    <span v-for="val in user">{{val}}</span>
+
+    <!--支持键和索引-->
+    <ul>
+        <li v-for="(val,key,index) in user">{{index}} - {{key}} : {{val}}</li>
+    </ul>
+</div>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            books: [
+                {name: '《vue实战》'},
+                {name: '《javaScript语言精粹》'}
+            ]
+        }
+    })
+
+    //$el可以访问该元素
+    console.log(app.$el);
+
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            user: {
+                name: "Arsen",
+                gender: "男",
+                age: 26,
+            },
+            books: [
+                {name: '《vue实战》'},
+                {name: '《javaScript语言精粹》'}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

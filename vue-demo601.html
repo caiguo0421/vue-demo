@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model</title>
+</head>
+<body>
+<div id ='app'>
+    <!--组合使用实现互斥效果，要v-model配合value使用-->
+    <input type="radio" value="html" id="html" v-model="picked"><label for="HTML">HTML</label><br>
+    <input type="radio" value="js" id="js" v-model="picked"><label for="js">js</label><br>
+    <input type="radio" value="css" id="css" v-model="picked"><label for="css">css</label><br>
+    <p>选择项目是{{picked}}</p>
+
+    
+</div>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            picked: 'js'
+        }
+    })
+
+    //$el可以访问该元素
+    console.log(app.$el);
+</script>
+
+</body>
+</html>
