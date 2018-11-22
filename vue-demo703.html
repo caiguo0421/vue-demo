@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件间通信-正向传递数据props</title>
+</head>
+<body>
+<div id="app">
+    <my-component message="来自父组件的数据"></my-component>
+</div>
+
+<!--驼峰转短横线-->
+<div id="app2">
+    <my-component2 warning-text="提示信息"></my-component2>
+</div>
+
+<div id="app3">
+    <input type="text" v-model="parentMessage">
+    <my-component3 :message="parentMessage"></my-component3>
+</div>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    Vue.component('my-component', {
+        props: ['message'],
+        template: '<div>{{message}}</div>'
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            picked: 'js'
+        }
+    })
+
+    Vue.component('my-component2', {
+        props: ['warningText'],
+        template: '<div>{{warningText}}</div>'
+    })
+    var app2 = new Vue({
+        el: '#app2',
+
+    })
+
+    Vue.component('my-component3', {
+        props: ['message'],
+        template: '<div>{{message}}</div>'
+    })
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            parentMessage: ''
+        }
+
+    })
+
+    //$el可以访问该元素
+    console.log(app.$el);
+</script>
+
+</body>
+</html>

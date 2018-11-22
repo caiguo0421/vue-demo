@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象共享</title>
+</head>
+<body>
+
+<div id="app">
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+</div>
+
+<!--3个按钮互不影响-->
+<div id="app2">
+    <my-component2></my-component2>
+    <my-component2></my-component2>
+    <my-component2></my-component2>
+</div>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var data = {
+        counter: 0
+    };
+
+    Vue.component('my-component', {
+        template: '<button @click="counter++">{{counter}}</button>',
+        data: function () {
+            return data;
+        }
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            picked: 'js'
+        }
+    })
+
+    Vue.component('my-component2', {
+        template: '<button @click="counter2++">{{counter2}}</button>',
+        data: function () {
+            return {
+                counter2: 0
+            };
+        }
+    });
+
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            picked: 'js'
+        },
+    })
+
+    //$el可以访问该元素
+    console.log(app.$el);
+</script>
+
+</body>
+</html>
