@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <anchor :level="2" title="特性">特性</anchor>
+</div>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    Vue.component('anchor', {
+        template: '#anchor',
+        props: {
+            level: {
+                type: Number,
+                required: true,
+            },
+            title: {
+                type: String,
+                default: "12333",
+            }
+        },
+        render: function (createElement) {
+            return createElement(
+                'h' + this.level,
+                [
+                    createElement('a', {
+                            domProps: {
+                                href: '#' + this.title
+                            }
+                        },
+                        this.$slots.default
+                    )
+
+                ]
+            )
+        }
+    });
+
+    var app = new Vue({
+        el: '#app'
+    })
+
+</script>
+
+</body>
+</html>
