@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件-slot</title>
+</head>
+<body>
+<div id="app">
+   <child-component v-show="showChild"></child-component>
+</div>
+
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    Vue.component('child-component', {
+        template: '<div>子组件</div>',
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            showChild: true
+        },
+    })
+
+    //$el可以访问该元素
+    console.log(app.$el);
+</script>
+
+</body>
+</html>
